@@ -8,6 +8,7 @@ Etapa 1
 Structura proiect:
 
   DOMAIN
+  
       Pacient (+Pacient Factory)
       Doctor  (+Doctor Factory)
          - de familie
@@ -18,6 +19,7 @@ Structura proiect:
       Istoric
       
   PERSISTENCE
+  
       CardSanatateRepository (implemets GenericRepository)
       DoctorRepository (implemets GenericRepository)
       IstoricRepository (implemets GenericRepository)
@@ -25,6 +27,7 @@ Structura proiect:
       ProgramareRepository (implemets GenericRepository)
       
   SERVICE
+  
       CardSanatateService 
       DoctorService 
       PacientService
@@ -32,6 +35,7 @@ Structura proiect:
       ProgramareService
  
   VIEW
+  
       ConsoleApp
       
 Obiecte create:
@@ -40,6 +44,7 @@ Obiecte create:
 
 
 Interogari:
+
       inregistreaza un pacient
       cauta pacient dupa nume
       modifica cnp pacient
