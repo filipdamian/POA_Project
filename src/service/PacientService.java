@@ -1,12 +1,18 @@
 package service;
 
+import domain.Pacient;
 import persistence.PacientRepository;
 
 import java.text.ParseException;
+import java.util.List;
 import java.util.Scanner;
 
 public class PacientService {
     private PacientRepository pacientRepository=new PacientRepository();
+
+    public void setPacients(List<Pacient> pacients) {
+        this.pacientRepository.setPacientList(pacients);
+    }
 
     public void registerNewPacient(Scanner in) throws ParseException {
        this.pacientRepository.add(in);
@@ -15,6 +21,9 @@ public class PacientService {
     public void getPacientByName(Scanner in) throws Exception {
         this.pacientRepository.get(in);
         System.out.println("Pacient afisat");
+    }
+    public List<Pacient> getPacients(){
+        return pacientRepository.getPacientList();
     }
     public void updatePacientCNP(Scanner in) throws Exception {
          var pacient=this.pacientRepository.get(in);

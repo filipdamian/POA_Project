@@ -50,6 +50,17 @@ public class Pacient {
         this.Email = email;
         this.Istoric = istoric;
     }
+    public Pacient(int id, String nume, String prenume, String cnp, String telefon, String adresa, Date dataNasterii, String email) {
+        this.Id = id;
+        this.Nume = nume;
+        this.Prenume = prenume;
+        this.CNP = cnp;
+        this.Telefon = telefon;
+        this.Adresa = adresa;
+        this.DataNasterii = dataNasterii;
+        this.Email = email;
+
+    }
     @Override
     public String toString() {
         return "{" +
@@ -127,6 +138,10 @@ public class Pacient {
 
     public void setIstoric(domain.Istoric istoric) {
         Istoric = istoric;
+    }
+
+    public String toCSV() {
+        return Id+","+Nume+","+Prenume+","+CNP+","+Telefon+","+Adresa+","+DataNasterii+","+Email+","+Istoric.toCSV();
     }
 }
 

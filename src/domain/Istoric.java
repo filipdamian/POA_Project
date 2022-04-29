@@ -103,4 +103,8 @@ public class Istoric {
     public void setTratament(HashMap<String, String> tratament) {
         Tratament = tratament;
     }
+
+    public String toCSV() {
+        return Afectiuni+","+Vindecat+","+DataDiagonezi+","+Tratament;
+    }
 }

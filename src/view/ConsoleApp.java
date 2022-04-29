@@ -1,5 +1,6 @@
 package view;
 
+import domain.PacientSingleton;
 import service.*;
 
 import java.util.Arrays;
@@ -16,9 +17,92 @@ public class ConsoleApp {
             System.out.println((i+1) + ". " + " (" + availableCommands.get(i) + ")");
     }
 
+
+
+
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
         boolean flag = false;
+        AuditService auditService = new AuditService();
+
+
+
+
+
+        PacientService pacientService = new PacientService();
+        DoctorService doctorService = new DoctorService();
+        IstoricService istoricService=new IstoricService();
+        CardSanatateService cardSanatateService=new CardSanatateService();
+        ProgramareService programareService=new ProgramareService();
+
+
+        PacientSingleton.getSingle_instance().loadFromCSV();
+        pacientService.setPacients(PacientSingleton.getSingle_instance().getPacients());
+
+
+        while (!flag){
+            System.out.println("Insert command: (help)");
+            String command = in.nextLine().toLowerCase(Locale.ROOT);
+            try{
+                switch (command) {
+                    case "inregistreaza_un_pacient" -> pacientService.registerNewPacient(in);
+                    case "cauta_pacient_dupa_nume" ->pacientService.getPacientByName(in);
+                    case "modifica_cnp_pacient" ->pacientService.updatePacientCNP(in);
+                    case "sterge_pacient_dupa_cnp" ->pacientService.removePacientByCNP(in);
+                    case "inregistreaza_un_doctor" ->doctorService.registerNewDoctor(in);
+                    case "cauta_doctor_dupa_nume" ->doctorService.getDoctorByName(in);
+                    case "adauga_nr_operatii_la_medic_chirurg" ->doctorService.updateDoctorSurgeries(in);
+                    case "pacienti_plecati_de_la_doctorul_nume"->doctorService.removePacientsFromDoctor(in);
+                    case "setare_concediu_pentru_doctor"->doctorService.SetDoctorVacation(in);
+                    case "adauga_istoric_user"->istoricService.registerPacientAffHistory(in);
+                    case "arata_istoric_user"->istoricService.getPacientAffHistory();
+                    case "inregistreaza_card_nou_sanatate"->cardSanatateService.registerNewHealthCard(in);
+                    case "arata_toate_cardurile_de_sanatate"->cardSanatateService.getListOfHealthCards();
+                    case "creaza_o_noua_programare"->programareService.createNewAppointment(in);
+                    case "arata_toate_programarile"->programareService.getAllAppointments();
+                    case "help" -> ConsoleApp.printAllCommands();
+                    case "exit" -> flag = true;
+                }
+                if(availableCommands.contains(command))
+                    auditService.logAction(command);
+            }catch (Exception e){
+                System.out.println(e);
+            }
+        }
+        System.out.println(pacientService.getPacients());
+        PacientSingleton.getSingle_instance().setPacients(pacientService.getPacients());
+        PacientSingleton.getSingle_instance().dumpToCSV();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /* public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        boolean flag = false;
+        AuditService auditService = new AuditService();
+
+
         PacientService pacientService = new PacientService();
         DoctorService doctorService = new DoctorService();
         IstoricService istoricService=new IstoricService();
@@ -47,9 +131,11 @@ public class ConsoleApp {
                     case "help" -> ConsoleApp.printAllCommands();
                     case "exit" -> flag = true;
                 }
+                if(availableCommands.contains(command))
+                    auditService.logAction(command);
             }catch (Exception e){
                 System.out.println(e);
             }
         }
-    }
+    }*/
 }
