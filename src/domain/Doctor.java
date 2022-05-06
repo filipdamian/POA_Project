@@ -77,4 +77,7 @@ public class Doctor {
     public void setConcediu(boolean concediu) {
         Concediu = concediu;
     }
+    public String toCSV() {
+        return Id+","+Nume+","+Prenume+","+Salariu+","+Concediu;
+    }
 }

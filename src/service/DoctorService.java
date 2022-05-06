@@ -1,14 +1,22 @@
 package service;
 
-import domain.DoctorDeFamilie;
-import domain.DoctorSpecialist;
-import domain.MedicChirurg;
+import domain.*;
 import persistence.DoctorRepository;
-
+import java.util.List;
 import java.util.Scanner;
 
 public class DoctorService {
     private DoctorRepository doctorRepository=new DoctorRepository();
+
+
+
+    public void setDoctors(List<Doctor> doctors){
+        this.doctorRepository.setPacientList(doctors);
+    }
+    public List<Doctor> getDoctors(){
+        return doctorRepository.getDoctorList();
+    }
+
     public void registerNewDoctor(Scanner in) throws Exception {
         this.doctorRepository.add(in);
         System.out.println("Doctor creat");

@@ -1,7 +1,10 @@
 package service;
 
+
+import domain.Programare;
 import persistence.ProgramareRepository;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ProgramareService {
@@ -12,5 +15,11 @@ public class ProgramareService {
     }
     public void getAllAppointments(){
         this.programareRepository.getList();
+    }
+    public void setProgramari(List<Programare> programares){
+        this.programareRepository.setProgramariList(programares);
+    }
+    public List<Programare> getProgramari(){
+        return programareRepository.getProgramariList();
     }
 }

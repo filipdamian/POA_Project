@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class DoctorFactory {
     private static int IdUnic=0;
-    private static void incrementIdUnic(int nr){
+    public static void incrementIdUnic(int nr){
         DoctorFactory.IdUnic+=nr;
     }
     public Doctor createDoctor(Scanner in) throws Exception {

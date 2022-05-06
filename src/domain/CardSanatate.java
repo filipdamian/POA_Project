@@ -6,20 +6,26 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class CardSanatate {
+    private final int Id;
     private Date DataCreare;
     private Date DataExpirare;
     private String TipCardSanatate;
     private Boolean Valid;
 
-    public CardSanatate(Date dataCreare, Date dataExpirare, String tipCardSanatate, Boolean valid) {
+
+    public CardSanatate(int id,Date dataCreare, Date dataExpirare, String tipCardSanatate, Boolean valid) {
+        this.Id=id;
         this.DataCreare = dataCreare;
         this.DataExpirare = dataExpirare;
         this.TipCardSanatate = tipCardSanatate;
         this.Valid = valid;
     }
-    public CardSanatate(Scanner in) throws ParseException {
+
+    public CardSanatate(int IdUnic,Scanner in) throws ParseException {
+        this.Id=IdUnic;
         this.citire(in);
     }
+
 
     public void citire(Scanner in) throws ParseException {
         System.out.println("DATA_CREARE : ");
@@ -35,7 +41,8 @@ public class CardSanatate {
 
     public String toString() {
         return "{" +
-                "DATA_CREARE=" + DataCreare +
+                "CardSanatateID="+ Id+
+                ", DATA_CREARE=" + DataCreare +
                 ", DATA_EXPIRARE='" + DataExpirare + '\'' +
                 ", TIP_CARD_SANATATE='" + TipCardSanatate + '\'' +
                 ", VALID='" + Valid + '\'' +
@@ -72,5 +79,8 @@ public class CardSanatate {
 
     public void setValid(Boolean valid) {
         Valid = valid;
+    }
+    public String toCSV() {
+        return Id+","+DataCreare+","+DataExpirare+","+TipCardSanatate+","+Valid;
     }
 }

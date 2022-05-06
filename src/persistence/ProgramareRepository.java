@@ -1,6 +1,6 @@
 package persistence;
 
-import domain.Programare;
+import domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,10 @@ import java.util.Scanner;
 
 public class ProgramareRepository implements GenericRepository<Programare> {
     private List<Programare> programareList=new ArrayList<>();
+    private final ProgramareFactory programareFactory = new ProgramareFactory();
     @Override
     public void add(Scanner in) throws Exception {
-        Programare programare=new Programare(in);
+        Programare programare=programareFactory.createProgramare(in);
         programareList.add(programare);
     }
 
@@ -31,5 +32,12 @@ public class ProgramareRepository implements GenericRepository<Programare> {
     @Override
     public void delete(Programare entity) {
 
+    }
+    public List<Programare> getProgramariList() {
+        return programareList;
+    }
+
+    public void setProgramariList(List<Programare> programareList) {
+        this.programareList = programareList;
     }
 }

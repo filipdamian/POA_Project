@@ -6,15 +6,18 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Programare {
+    private final int Id;
     private Date DataProgramare;
     private String NumeDoctor;
 
-    public Programare(Date dataProgramare, String numeDoctor ) {
+    public Programare(int id,Date dataProgramare, String numeDoctor ) {
+        this.Id=id;
         this.DataProgramare = dataProgramare;
         this.NumeDoctor = numeDoctor;
 
     }
-    public Programare(Scanner in) throws ParseException {
+    public Programare(int IdUnic,Scanner in) throws ParseException {
+        this.Id=IdUnic;
         citire(in);
     }
 
@@ -26,7 +29,8 @@ public class Programare {
     }
     public String toString() {
         return "{" +
-                "DATA_PROGRAMARE=" + DataProgramare +
+                "ProgramareID=" + Id +
+                ", DATA_PROGRAMARE=" + DataProgramare +
                 ", NUME_DOCTOR='" + NumeDoctor + '\'' +
                 '}';
     }
@@ -46,5 +50,7 @@ public class Programare {
         NumeDoctor = numeDoctor;
     }
 
-
+    public String toCSV() {
+        return Id+","+DataProgramare+","+NumeDoctor;
+    }
 }

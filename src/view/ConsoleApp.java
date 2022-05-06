@@ -1,6 +1,9 @@
 package view;
 
+import domain.CardSanatateSingleton;
+import domain.DoctorSingleton;
 import domain.PacientSingleton;
+import domain.ProgramareSingleton;
 import service.*;
 
 import java.util.Arrays;
@@ -40,6 +43,17 @@ public class ConsoleApp {
         pacientService.setPacients(PacientSingleton.getSingle_instance().getPacients());
 
 
+        DoctorSingleton.getSingle_instance().loadFromCSV();
+        doctorService.setDoctors(DoctorSingleton.getSingle_instance().getDoctors());
+
+        CardSanatateSingleton.getSingle_instance().loadFromCSV();
+        cardSanatateService.setCards(CardSanatateSingleton.getSingle_instance().getCardSanatates());
+
+        ProgramareSingleton.getSingle_instance().loadFromCSV();
+        programareService.setProgramari(ProgramareSingleton.getSingle_instance().getProgramares());
+
+
+
         while (!flag){
             System.out.println("Insert command: (help)");
             String command = in.nextLine().toLowerCase(Locale.ROOT);
@@ -72,6 +86,23 @@ public class ConsoleApp {
         System.out.println(pacientService.getPacients());
         PacientSingleton.getSingle_instance().setPacients(pacientService.getPacients());
         PacientSingleton.getSingle_instance().dumpToCSV();
+
+
+        System.out.println(doctorService.getDoctors());
+        DoctorSingleton.getSingle_instance().setDoctors(doctorService.getDoctors());
+        DoctorSingleton.getSingle_instance().dumpToCSV();
+
+
+        System.out.println(cardSanatateService.getCards());
+        CardSanatateSingleton.getSingle_instance().setCardSanatates(cardSanatateService.getCards());
+        CardSanatateSingleton.getSingle_instance().dumpToCSV();
+
+
+        System.out.println(programareService.getProgramari());
+        ProgramareSingleton.getSingle_instance().setProgramares(programareService.getProgramari());
+        ProgramareSingleton.getSingle_instance().dumpToCSV();
+
+
     }
 
 

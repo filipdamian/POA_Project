@@ -51,4 +51,12 @@ public class DoctorRepository implements GenericRepository<Doctor>{
     public void delete(Doctor entity) {
 
     }
+
+    public List<Doctor> getDoctorList() {
+        return doctorList;
+    }
+
+    public void setPacientList(List<Doctor> pacientList) {
+        this.doctorList = pacientList;
+    }
 }
