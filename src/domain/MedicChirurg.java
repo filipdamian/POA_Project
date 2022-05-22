@@ -1,5 +1,7 @@
 package domain;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class MedicChirurg extends DoctorSpecialist{
@@ -17,6 +19,22 @@ public class MedicChirurg extends DoctorSpecialist{
     public MedicChirurg(int IdUnic, Scanner in) throws Exception {
         this.Id = IdUnic;
         this.citireMedChirurg(in);
+
+    }
+    public MedicChirurg(int IdUnic, ResultSet in) throws SQLException {
+        this.Id = IdUnic;
+        this.read(in);
+    }
+    public void read(ResultSet in) throws SQLException {
+        this.Nume = in.getString("nume");
+        this.Prenume = in.getString("prenume");
+        this.Salariu = in.getInt("salariu");
+        this.Concediu = in.getBoolean("concediu");
+        this.NrPacienti = in.getInt("nrpacienti");
+        this.Specializare = in.getString("specializare");
+        this.OperatiiEsuate=in.getInt("operatiiesuate");
+        this.OperatiiReusite=in.getInt("operatiireusite");
+        this.Malpraxis=in.getInt("malpraxis");
 
     }
 
@@ -40,7 +58,7 @@ public class MedicChirurg extends DoctorSpecialist{
         super.citireMedSpecialist(in);
         System.out.println("Operatii reusite : ");
         this.OperatiiReusite = Integer.parseInt(in.nextLine());
-        System.out.println("Operatii reusite : ");
+        System.out.println("Operatii esuate : ");
         this.OperatiiEsuate = Integer.parseInt(in.nextLine());
         System.out.println("Malpraxis : ");
         this.Malpraxis = Integer.parseInt(in.nextLine());

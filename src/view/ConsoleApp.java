@@ -1,11 +1,12 @@
 package view;
 
-import domain.CardSanatateSingleton;
-import domain.DoctorSingleton;
-import domain.PacientSingleton;
-import domain.ProgramareSingleton;
+import domain.*;
 import service.*;
 
+import javax.print.Doc;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -20,10 +21,24 @@ public class ConsoleApp {
             System.out.println((i+1) + ". " + " (" + availableCommands.get(i) + ")");
     }
 
+    public static Connection getConnection() {
+        try{
+            String url = "jdbc:mysql://localhost:3306/bdproiectpao";
+            String user = "root";
+            String password = "parola";
+
+            return DriverManager.getConnection(url, user, password);
+        }catch (SQLException e){
+            System.out.println(e.toString());
+            return null;
+        }
+    }
 
 
 
-    public static void main(String[] args){
+
+        //etapa2
+        public static void main(String[] args){
         Scanner in = new Scanner(System.in);
         boolean flag = false;
         AuditService auditService = new AuditService();
@@ -120,15 +135,9 @@ public class ConsoleApp {
 
 
 
-
-
-
-
-
-
-
-
-   /* public static void main(String[] args){
+/*
+    //etapa 1
+  public static void main(String[] args){
         Scanner in = new Scanner(System.in);
         boolean flag = false;
         AuditService auditService = new AuditService();
@@ -168,5 +177,61 @@ public class ConsoleApp {
                 System.out.println(e);
             }
         }
-    }*/
+    }
+}
+*/
+
+//    //etapa 3
+//    // mai ramane de customizat metodele de create din databaseservice pentru programari si carduri !! + de testat daca functioneaza cu configuratia noua de interfete pe celalalte etape
+//    public static void main(String[] args){
+//        Scanner in = new Scanner(System.in);
+//        boolean flag = false;
+//
+//        var connection=ConsoleApp.getConnection();
+//
+//        var pacientsDatabase=new PacientDatabase(connection);
+//        var doctorDatabase=new DoctorDatabase(connection);
+//        var programareDatabase=new ProgramareDatabase(connection);
+//        var cardDatabase=new CardSanatateDatabase(connection);
+//
+//        DatabaseService databaseService=new DatabaseService(pacientsDatabase,doctorDatabase,programareDatabase,cardDatabase);
+//
+//        AuditService auditService = new AuditService();
+//
+//        while (!flag){
+//            System.out.println("Insert command: (help)");
+//            String command = in.nextLine().toLowerCase(Locale.ROOT);
+//            try{
+//                switch (command) {
+//                    case "inregistreaza_un_pacient" -> databaseService.registerNewPacient(in);
+//                    case "cauta_pacient_dupa_nume" ->databaseService.getPacientByName(in);
+//                    case "modifica_cnp_pacient" ->databaseService.updatePacientCNP(in);
+//                    case "sterge_pacient_dupa_cnp" ->databaseService.removePacientByCNP(in);
+//                    case "inregistreaza_un_doctor" ->databaseService.registerNewDoctor(in);
+//                    case "cauta_doctor_dupa_nume" ->databaseService.getDoctorByName(in);
+//                    case "adauga_nr_operatii_la_medic_chirurg" ->databaseService.updateDoctorSurgeries(in);
+//                    case "pacienti_plecati_de_la_doctorul_nume"->databaseService.removePacientsFromDoctor(in);
+//                    case "setare_concediu_pentru_doctor"->databaseService.SetDoctorVacation(in);
+////                    case "adauga_istoric_user"->istoricService.registerPacientAffHistory(in);
+////                    case "arata_istoric_user"->istoricService.getPacientAffHistory();
+//                    case "inregistreaza_card_nou_sanatate"->databaseService.registerNewHealthCard(in);
+//                    case "arata_toate_cardurile_de_sanatate"->databaseService.getListOfHealthCards();
+//                    case "creaza_o_noua_programare"->databaseService.createNewAppointment(in);
+//                    case "arata_toate_programarile"->databaseService.getAllAppointments();
+//                    case "help" -> ConsoleApp.printAllCommands();
+//                    case "exit" -> flag = true;
+//                }
+//                if(availableCommands.contains(command))
+//                    auditService.logAction(command);
+//            }catch (Exception e){
+//                System.out.println(e);
+//            }
+//        }
+//        try{
+//            assert connection != null;
+//            connection.close();
+//        }catch (Exception e){
+//            System.out.println(e.toString());
+//        }
+//    }
 }

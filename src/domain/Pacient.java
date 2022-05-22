@@ -1,10 +1,14 @@
 package domain;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Pacient {
+
+
     private final int Id;
     private String Nume;
     private String Prenume;
@@ -19,6 +23,25 @@ public class Pacient {
         this.Id = IdUnic;
         this.citire(in);
     }
+    public Pacient(int IdUnic, ResultSet in) throws SQLException {
+        this.Id = IdUnic;
+        this.read(in);
+    }
+
+
+
+    public void read(ResultSet in) throws SQLException {
+        this.Nume = in.getString("nume");
+        this.Prenume = in.getString("prenume");
+        this.Telefon = in.getString("telefon");
+        this.Adresa = in.getString("adresa");
+        this.DataNasterii = in.getDate("datanasterii");
+        this.Email = in.getString("email");
+        this.CNP = in.getString("CNP");
+        this.Istoric = new Istoric(in);
+    }
+
+
 
     public void citire(Scanner in) throws ParseException {
         System.out.println("NUME : ");
@@ -76,6 +99,9 @@ public class Pacient {
                 '}';
     }
 
+    public int getId() {
+        return Id;
+    }
     public String getNume() {
         return Nume;
     }

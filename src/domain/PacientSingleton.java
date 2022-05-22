@@ -60,7 +60,7 @@ public class PacientSingleton {
                         fields[3], //cnp
                         fields[4], //telefon
                         fields[5], //adresa(str)
-                        new SimpleDateFormat("dd-MM-HH-mm-ss zzz yyyy").parse(fields[6]),
+                        new SimpleDateFormat("yyyy-MM-dd").parse(fields[6]),
                         fields[7] //email
                          // istoric (Istoric)
 

@@ -7,7 +7,7 @@ import persistence.CardSanatateRepository;
 import java.util.List;
 import java.util.Scanner;
 
-public class CardSanatateService {
+public class CardSanatateService implements ICardSanatateService {
     private CardSanatateRepository cardSanatateRepository=new CardSanatateRepository();
     public void registerNewHealthCard(Scanner in) throws Exception {
         this.cardSanatateRepository.add(in);

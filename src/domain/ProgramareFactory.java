@@ -1,5 +1,7 @@
 package domain;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Scanner;
 
@@ -11,5 +13,8 @@ public class ProgramareFactory {
     public Programare createProgramare(Scanner in) throws ParseException {
         this.IdUnic+=1;
         return new Programare(IdUnic,in);
+    }
+    public Programare createProgramare(ResultSet in) throws SQLException {
+        return new Programare(IdUnic++, in);
     }
 }

@@ -5,7 +5,7 @@ import persistence.DoctorRepository;
 import java.util.List;
 import java.util.Scanner;
 
-public class DoctorService {
+public class DoctorService implements IDoctorService {
     private DoctorRepository doctorRepository=new DoctorRepository();
 
 

@@ -50,8 +50,8 @@ public class CardSanatateSingleton {
 
                 var newCardSanatate = new CardSanatate(
                         Integer.parseInt(fields[0]),
-                        new SimpleDateFormat("dd-MM-HH-mm-ss zzz yyyy").parse(fields[1]),
-                        new SimpleDateFormat("dd-MM-HH-mm-ss zzz yyyy").parse(fields[2]),
+                        new SimpleDateFormat("yyyy-MM-dd").parse(fields[1]),
+                        new SimpleDateFormat("yyyy-MM-dd").parse(fields[2]),
                         fields[3],
                         Boolean.parseBoolean(fields[4])
                 );

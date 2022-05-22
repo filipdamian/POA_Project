@@ -7,7 +7,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Scanner;
 
-public class PacientService {
+public class PacientService implements IPacientService {
     private PacientRepository pacientRepository=new PacientRepository();
 
     public void setPacients(List<Pacient> pacients) {

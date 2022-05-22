@@ -1,5 +1,7 @@
 package domain;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -19,7 +21,12 @@ public class Istoric {
    public Istoric(Scanner in) throws ParseException {
         this.citire(in);
     }
-
+    public Istoric(ResultSet in) throws SQLException {
+        this.read(in);
+    }
+    public void read(ResultSet in) throws SQLException {
+        ///
+    }
 
     public void citire(Scanner in) throws ParseException {
         System.out.println("NR AFECTIUNI GASITE : ");

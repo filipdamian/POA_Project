@@ -7,7 +7,7 @@ import persistence.ProgramareRepository;
 import java.util.List;
 import java.util.Scanner;
 
-public class ProgramareService {
+public class ProgramareService implements IProgramareService{
     private ProgramareRepository programareRepository=new ProgramareRepository();
     public void createNewAppointment(Scanner in) throws Exception {
         this.programareRepository.add(in);

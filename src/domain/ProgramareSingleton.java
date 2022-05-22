@@ -50,7 +50,7 @@ public class ProgramareSingleton {
 
                 var newProgramare = new Programare(
                     Integer.parseInt(fields[0]),
-                    new SimpleDateFormat("dd-MM-HH-mm-ss zzz yyyy").parse(fields[1]),
+                    new SimpleDateFormat("yyyy-MM-dd").parse(fields[1]),
                     fields[2]
 
                 );

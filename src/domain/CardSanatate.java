@@ -1,11 +1,17 @@
 package domain;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
 public class CardSanatate {
+    public int getId() {
+        return Id;
+    }
+
     private final int Id;
     private Date DataCreare;
     private Date DataExpirare;
@@ -26,6 +32,17 @@ public class CardSanatate {
         this.citire(in);
     }
 
+    public CardSanatate(int IdUnic, ResultSet in) throws SQLException {
+        this.Id = IdUnic;
+        this.read(in);
+    }
+    public void read(ResultSet in) throws SQLException {
+        this.DataCreare = in.getDate("datacreare");
+        this.DataExpirare = in.getDate("dataexpirare");
+        this.TipCardSanatate = in.getString("tipcard");
+        this.Valid = in.getBoolean("valid");
+
+    }
 
     public void citire(Scanner in) throws ParseException {
         System.out.println("DATA_CREARE : ");

@@ -1,5 +1,7 @@
 package domain;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class DoctorDeFamilie extends  Doctor {
@@ -16,6 +18,18 @@ public class DoctorDeFamilie extends  Doctor {
     public DoctorDeFamilie(int IdUnic, Scanner in) throws Exception {
         this.Id = IdUnic;
         this.citireMedFam(in);
+
+    }
+    public DoctorDeFamilie(int IdUnic, ResultSet in) throws SQLException {
+        this.Id = IdUnic;
+        this.read(in);
+    }
+    public void read(ResultSet in) throws SQLException {
+        this.Nume = in.getString("nume");
+        this.Prenume = in.getString("prenume");
+        this.Salariu = in.getInt("salariu");
+        this.Concediu = in.getBoolean("concediu");
+        this.NrPacienti = in.getInt("nrpacienti");
 
     }
 

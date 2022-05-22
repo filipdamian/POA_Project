@@ -1,6 +1,9 @@
 package domain;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.Scanner;
 
 public class PacientFactory {
@@ -11,5 +14,8 @@ public class PacientFactory {
     public Pacient createPacient(Scanner in) throws ParseException {
         this.IdUnic+=1;
         return new Pacient(IdUnic,in);
+    }
+    public Pacient createPacient(ResultSet in) throws SQLException{
+        return new Pacient(IdUnic++, in);
     }
 }
